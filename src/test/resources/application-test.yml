@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    url: jdbc:tc:postgresql:16-alpine:///testdb
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+    clean-disabled: false
+
+app:
+  salary:
+    base-grade: GRADE_6
+    base-salary: 25000
+    grade-increment: 5000
+    house-rent-percentage: 20
+    medical-percentage: 15
+
+logging:
+  level:
+    root: INFO
+    com.company.employeesalary: DEBUG

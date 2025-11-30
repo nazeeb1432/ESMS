@@ -1,0 +1,7 @@
+package com.company.employeesalary.common.exception;
+
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}

@@ -1,0 +1,571 @@
+{
+  "info": {
+    "name": "Employee Salary Management API",
+    "description": "Complete API collection for Employee Salary Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Salary Configuration",
+      "item": [
+        {
+          "name": "Get Salary Configuration",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/configuration/salary",
+              "host": ["{{baseUrl}}"],
+              "path": ["configuration", "salary"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/configuration/salary"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"baseSalary\": 25000.00,\n  \"gradeIncrement\": 5000.00,\n  \"houseRentPercentage\": 20,\n  \"medicalPercentage\": 15,\n  \"updatedAt\": \"2024-03-15T10:30:00\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Salary Configuration",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"baseSalary\": 30000,\n  \"gradeIncrement\": 6000,\n  \"houseRentPercentage\": 25,\n  \"medicalPercentage\": 20\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/configuration/salary",
+              "host": ["{{baseUrl}}"],
+              "path": ["configuration", "salary"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "PUT",
+                "url": "{{baseUrl}}/configuration/salary"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"baseSalary\": 30000.00,\n  \"gradeIncrement\": 6000.00,\n  \"houseRentPercentage\": 25,\n  \"medicalPercentage\": 20,\n  \"updatedAt\": \"2024-03-15T14:45:00\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Company Account",
+      "item": [
+        {
+          "name": "Get Company Account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/company/account",
+              "host": ["{{baseUrl}}"],
+              "path": ["company", "account"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/company/account"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"accountName\": \"Company Main Account\",\n  \"accountNumber\": \"COMP-ACC-001\",\n  \"currentBalance\": 1000000.00,\n  \"bankName\": \"Central Bank\",\n  \"branchName\": \"Main Branch\",\n  \"updatedAt\": \"2024-03-15T10:00:00\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Top-Up Company Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 500000\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/company/account/topup",
+              "host": ["{{baseUrl}}"],
+              "path": ["company", "account", "topup"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/company/account/topup"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"accountName\": \"Company Main Account\",\n  \"accountNumber\": \"COMP-ACC-001\",\n  \"currentBalance\": 1500000.00,\n  \"bankName\": \"Central Bank\",\n  \"branchName\": \"Main Branch\",\n  \"updatedAt\": \"2024-03-15T11:30:00\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Employee Management",
+      "item": [
+        {
+          "name": "Create Employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"grade\": \"GRADE_5\",\n  \"address\": \"123 Main St, Dhaka\",\n  \"mobileNumber\": \"+8801712345678\",\n  \"bankAccount\": {\n    \"accountName\": \"John Doe Savings\",\n    \"accountNumber\": \"1234567890\",\n    \"accountType\": \"SAVINGS\",\n    \"bankName\": \"Dhaka Bank\",\n    \"branchName\": \"Gulshan Branch\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/employees"
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"employeeId\": \"0423\",\n  \"name\": \"John Doe\",\n  \"grade\": \"GRADE_5\",\n  \"address\": \"123 Main St, Dhaka\",\n  \"mobileNumber\": \"+8801712345678\",\n  \"bankAccountNumber\": \"1234567890\",\n  \"maskedBankAccountNumber\": \"******7890\",\n  \"createdAt\": \"2024-03-15T10:30:00\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Employees (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/employees?page=0&size=10"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"content\": [\n    {\n      \"id\": 1,\n      \"employeeId\": \"0423\",\n      \"name\": \"John Doe\",\n      \"grade\": \"GRADE_5\",\n      \"address\": \"123 Main St, Dhaka\",\n      \"mobileNumber\": \"+8801712345678\",\n      \"bankAccountNumber\": \"1234567890\",\n      \"maskedBankAccountNumber\": \"******7890\",\n      \"createdAt\": \"2024-03-15T10:30:00\"\n    }\n  ],\n  \"pageable\": {\n    \"pageNumber\": 0,\n    \"pageSize\": 10\n  },\n  \"totalElements\": 1,\n  \"totalPages\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Employee by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees/0423",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "0423"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/employees/0423"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"employeeId\": \"0423\",\n  \"name\": \"John Doe\",\n  \"grade\": \"GRADE_5\",\n  \"address\": \"123 Main St, Dhaka\",\n  \"mobileNumber\": \"+8801712345678\",\n  \"bankAccountNumber\": \"1234567890\",\n  \"maskedBankAccountNumber\": \"******7890\",\n  \"createdAt\": \"2024-03-15T10:30:00\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Employee",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe Updated\",\n  \"grade\": \"GRADE_4\",\n  \"address\": \"456 New Address, Dhaka\",\n  \"mobileNumber\": \"+8801712345678\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees/0423",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "0423"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "PUT",
+                "url": "{{baseUrl}}/employees/0423"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"employeeId\": \"0423\",\n  \"name\": \"John Doe Updated\",\n  \"grade\": \"GRADE_4\",\n  \"address\": \"456 New Address, Dhaka\",\n  \"mobileNumber\": \"+8801712345678\",\n  \"bankAccountNumber\": \"1234567890\",\n  \"maskedBankAccountNumber\": \"******7890\",\n  \"createdAt\": \"2024-03-15T10:30:00\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Employee",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees/0423",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "0423"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "DELETE",
+                "url": "{{baseUrl}}/employees/0423"
+              },
+              "status": "No Content",
+              "code": 204
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Payroll Processing",
+      "item": [
+        {
+          "name": "Preview Employee Salary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payroll/salary/0423",
+              "host": ["{{baseUrl}}"],
+              "path": ["payroll", "salary", "0423"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/payroll/salary/0423"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"employeeId\": \"0423\",\n  \"employeeName\": \"John Doe\",\n  \"grade\": \"GRADE_5\",\n  \"basic\": 30000.00,\n  \"houseRent\": 6000.00,\n  \"medical\": 4500.00,\n  \"gross\": 40500.00,\n  \"status\": null,\n  \"paidAt\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Process Payroll (All Employees)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payroll/process",
+              "host": ["{{baseUrl}}"],
+              "path": ["payroll", "process"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/payroll/process"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"totalPaid\": 121500.00,\n  \"paidCount\": 3,\n  \"failedCount\": 0,\n  \"remainingCompanyBalance\": 878500.00,\n  \"salarySlips\": [\n    {\n      \"employeeId\": \"0423\",\n      \"employeeName\": \"John Doe\",\n      \"grade\": \"GRADE_5\",\n      \"basic\": 30000.00,\n      \"houseRent\": 6000.00,\n      \"medical\": 4500.00,\n      \"gross\": 40500.00,\n      \"status\": \"PAID\",\n      \"paidAt\": \"2024-03-15T14:20:30\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Process Payroll (Selected Employees)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payroll/process?ids=1,2,3",
+              "host": ["{{baseUrl}}"],
+              "path": ["payroll", "process"],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "1,2,3"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/payroll/process?ids=1,2,3"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"totalPaid\": 81000.00,\n  \"paidCount\": 2,\n  \"failedCount\": 0,\n  \"remainingCompanyBalance\": 919000.00,\n  \"salarySlips\": [\n    {\n      \"employeeId\": \"0423\",\n      \"employeeName\": \"John Doe\",\n      \"grade\": \"GRADE_5\",\n      \"basic\": 30000.00,\n      \"houseRent\": 6000.00,\n      \"medical\": 4500.00,\n      \"gross\": 40500.00,\n      \"status\": \"PAID\",\n      \"paidAt\": \"2024-03-15T14:20:30\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Employee Salary History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payroll/history/0423",
+              "host": ["{{baseUrl}}"],
+              "path": ["payroll", "history", "0423"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/payroll/history/0423"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"employeeId\": \"0423\",\n    \"employeeName\": \"John Doe\",\n    \"grade\": \"GRADE_5\",\n    \"basic\": 30000.00,\n    \"houseRent\": 6000.00,\n    \"medical\": 4500.00,\n    \"gross\": 40500.00,\n    \"status\": \"PAID\",\n    \"paidAt\": \"2024-03-15T14:20:30\"\n  },\n  {\n    \"employeeId\": \"0423\",\n    \"employeeName\": \"John Doe\",\n    \"grade\": \"GRADE_5\",\n    \"basic\": 30000.00,\n    \"houseRent\": 6000.00,\n    \"medical\": 4500.00,\n    \"gross\": 40500.00,\n    \"status\": \"PAID\",\n    \"paidAt\": \"2024-02-15T14:20:30\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5. Reports",
+      "item": [
+        {
+          "name": "Get Salary Sheet by Date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reports/salary-sheet?date=2024-03-15",
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "salary-sheet"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2024-03-15"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/reports/salary-sheet?date=2024-03-15"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"employeeId\": \"0423\",\n    \"employeeName\": \"John Doe\",\n    \"grade\": \"GRADE_5\",\n    \"basic\": 30000.00,\n    \"houseRent\": 6000.00,\n    \"medical\": 4500.00,\n    \"gross\": 40500.00,\n    \"status\": \"PAID\",\n    \"paidAt\": \"2024-03-15T14:20:30\"\n  },\n  {\n    \"employeeId\": \"0856\",\n    \"employeeName\": \"Jane Smith\",\n    \"grade\": \"GRADE_4\",\n    \"basic\": 35000.00,\n    \"houseRent\": 7000.00,\n    \"medical\": 5250.00,\n    \"gross\": 47250.00,\n    \"status\": \"PAID\",\n    \"paidAt\": \"2024-03-15T14:21:00\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Summary Report by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reports/summary?from=2024-03-01&to=2024-03-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["reports", "summary"],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2024-03-01"
+                },
+                {
+                  "key": "to",
+                  "value": "2024-03-31"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success Response",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/reports/summary?from=2024-03-01&to=2024-03-31"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"totalPaid\": 364500.00,\n  \"paidCount\": 9,\n  \"failedCount\": 0,\n  \"remainingCompanyBalance\": 635500.00,\n  \"salarySlips\": [\n    {\n      \"employeeId\": \"0423\",\n      \"employeeName\": \"John Doe\",\n      \"grade\": \"GRADE_5\",\n      \"basic\": 30000.00,\n      \"houseRent\": 6000.00,\n      \"medical\": 4500.00,\n      \"gross\": 40500.00,\n      \"status\": \"PAID\",\n      \"paidAt\": \"2024-03-15T14:20:30\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "6. Error Scenarios",
+      "item": [
+        {
+          "name": "Insufficient Balance Error",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payroll/process",
+              "host": ["{{baseUrl}}"],
+              "path": ["payroll", "process"]
+            }
+          },
+          "response": [
+            {
+              "name": "Insufficient Balance",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/payroll/process"
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"timestamp\": \"2024-03-15T14:30:00\",\n  \"status\": 409,\n  \"error\": \"Insufficient Balance\",\n  \"message\": \"Insufficient balance. Required: 40500.00, Available: 20000.00, Top-up needed: 20500.00\",\n  \"path\": \"/api/v1/payroll/process\",\n  \"requiredAmount\": 40500.00,\n  \"availableBalance\": 20000.00,\n  \"requiredTopUp\": 20500.00\n}"
+            }
+          ]
+        },
+        {
+          "name": "Employee Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/employees/9999",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees", "9999"]
+            }
+          },
+          "response": [
+            {
+              "name": "Not Found",
+              "originalRequest": {
+                "method": "GET",
+                "url": "{{baseUrl}}/employees/9999"
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"timestamp\": \"2024-03-15T14:30:00\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"Employee not found with ID: 9999\",\n  \"path\": \"/api/v1/employees/9999\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Validation Error",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"grade\": \"GRADE_5\",\n  \"address\": \"\",\n  \"mobileNumber\": \"invalid\",\n  \"bankAccount\": {\n    \"accountName\": \"\",\n    \"accountNumber\": \"\",\n    \"accountType\": \"SAVINGS\",\n    \"bankName\": \"\",\n    \"branchName\": \"\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/employees",
+              "host": ["{{baseUrl}}"],
+              "path": ["employees"]
+            }
+          },
+          "response": [
+            {
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "POST",
+                "url": "{{baseUrl}}/employees"
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"timestamp\": \"2024-03-15T14:30:00\",\n  \"status\": 400,\n  \"error\": \"Validation Failed\",\n  \"message\": \"Invalid input parameters\",\n  \"path\": \"/api/v1/employees\",\n  \"validationErrors\": {\n    \"name\": \"Name is required\",\n    \"address\": \"Address is required\",\n    \"mobileNumber\": \"Invalid mobile number format\",\n    \"bankAccount.accountName\": \"Account name is required\",\n    \"bankAccount.accountNumber\": \"Account number is required\"\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
