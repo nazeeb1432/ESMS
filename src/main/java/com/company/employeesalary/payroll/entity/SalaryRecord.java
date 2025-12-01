@@ -4,6 +4,8 @@ import com.company.employeesalary.common.dto.SalaryStatus;
 import com.company.employeesalary.employee.entity.Employee;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -38,7 +40,8 @@ public class SalaryRecord {
     private BigDecimal grossSalary;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false, columnDefinition = "salary_status")
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     private SalaryStatus status;
 
     @Column(name = "paid_at")

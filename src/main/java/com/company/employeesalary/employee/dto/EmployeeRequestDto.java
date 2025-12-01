@@ -9,9 +9,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmployeeRequestDto {
 
     @NotBlank(message = "Name is required")

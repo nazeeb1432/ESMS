@@ -3,6 +3,8 @@ package com.company.employeesalary.bank.entity;
 import com.company.employeesalary.common.dto.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +29,8 @@ public class BankAccount {
     private String accountNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_type", nullable = false)
+    @Column(name = "account_type", nullable = false, columnDefinition = "account_type")
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     private AccountType accountType;
 
     @Column(name = "current_balance", nullable = false, precision = 15, scale = 2)

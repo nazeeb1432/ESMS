@@ -4,6 +4,8 @@ import com.company.employeesalary.bank.entity.BankAccount;
 import com.company.employeesalary.common.dto.Grade;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +29,8 @@ public class Employee {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "grade", nullable = false)
+    @Column(name = "grade", nullable = false, columnDefinition = "employee_grade")
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     private Grade grade;
 
     @Column(name = "address", nullable = false, columnDefinition = "TEXT")
