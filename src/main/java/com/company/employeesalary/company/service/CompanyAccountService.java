@@ -3,6 +3,7 @@ package com.company.employeesalary.company.service;
 import com.company.employeesalary.common.exception.InvalidOperationException;
 import com.company.employeesalary.common.exception.ResourceNotFoundException;
 import com.company.employeesalary.company.dto.CompanyAccountResponseDto;
+import com.company.employeesalary.company.dto.SetBalanceRequestDto;
 import com.company.employeesalary.company.dto.TopUpRequestDto;
 import com.company.employeesalary.company.entity.CompanyAccount;
 import com.company.employeesalary.company.mapper.CompanyAccountMapper;
@@ -49,6 +50,28 @@ public class CompanyAccountService {
         CompanyAccount updatedAccount = companyAccountRepository.save(account);
 
         log.info("Company account topped up successfully. Old balance: {}, New balance: {}",
+                oldBalance, updatedAccount.getCurrentBalance());
+
+        return companyAccountMapper.toResponseDto(updatedAccount);
+    }
+
+    @Transactional
+    public CompanyAccountResponseDto setBalance(SetBalanceRequestDto requestDto) {
+        log.info("Processing set balance request for amount: {}", requestDto.getAmount());
+
+        if (requestDto.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidOperationException("Balance amount cannot be negative");
+        }
+
+        CompanyAccount account = companyAccountRepository.findFirstCompanyAccountWithLock()
+                .orElseThrow(() -> new ResourceNotFoundException("Company account not found"));
+
+        BigDecimal oldBalance = account.getCurrentBalance();
+        account.setCurrentBalance(requestDto.getAmount());
+
+        CompanyAccount updatedAccount = companyAccountRepository.save(account);
+
+        log.info("Company account balance set successfully. Old balance: {}, New balance: {}",
                 oldBalance, updatedAccount.getCurrentBalance());
 
         return companyAccountMapper.toResponseDto(updatedAccount);

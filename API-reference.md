@@ -97,6 +97,31 @@ Success 200 Response Example:
 }
 ```
 
+### Set Company Account Balance
+PUT `/company/account/balance`
+Replaces the current company account balance with a specific amount. Unlike top-up which adds to the existing balance, this endpoint sets the balance to the exact value provided.
+
+Request Body:
+```json
+{
+  "amount": 1000000
+}
+```
+Success 200 Response Example:
+```json
+{
+  "id": 1,
+  "accountName": "Company Main Account",
+  "accountNumber": "COMP-ACC-001",
+  "currentBalance": 1000000.00,
+  "bankName": "Central Bank",
+  "branchName": "Main Branch",
+  "updatedAt": "2024-12-07T15:45:00"
+}
+```
+
+**Note:** If the current balance is 5000.00 and you send `{"amount": 1000}`, the balance will be set to 1000.00 (not added to the existing balance).
+
 ---
 ## 3. Employee Management
 ### Create Employee
